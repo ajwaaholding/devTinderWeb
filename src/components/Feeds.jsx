@@ -203,144 +203,145 @@ const Feeds = () => {
   const currentProfile = profiles[currentIndex];
 
   return (
-    <div className="relative h-screen bg-gray-100 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 z-10 p-4 flex justify-between items-center bg-gradient-to-b from-black/30 to-transparent">
-        <button className="text-white">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
-        </button>
-        <div className="text-white font-bold text-xl">tinder</div>
-        <button className="text-white">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-            />
-          </svg>
-        </button>
-      </div>
+    <h1>Feeds</h1>
+    // <div className="relative  bg-gray-100 overflow-hidden">
+    //   <div className="absolute top-0 left-0 right-0 z-10 p-4 flex justify-between items-center bg-gradient-to-b from-black/30 to-transparent">
+    //     <button className="text-white">
+    //       <svg
+    //         className="w-6 h-6"
+    //         fill="none"
+    //         stroke="currentColor"
+    //         viewBox="0 0 24 24"
+    //       >
+    //         <path
+    //           strokeLinecap="round"
+    //           strokeLinejoin="round"
+    //           strokeWidth={2}
+    //           d="M10 19l-7-7m0 0l7-7m-7 7h18"
+    //         />
+    //       </svg>
+    //     </button>
+    //     <div className="text-white font-bold text-xl">tinder</div>
+    //     <button className="text-white">
+    //       <svg
+    //         className="w-6 h-6"
+    //         fill="none"
+    //         stroke="currentColor"
+    //         viewBox="0 0 24 24"
+    //       >
+    //         <path
+    //           strokeLinecap="round"
+    //           strokeLinejoin="round"
+    //           strokeWidth={2}
+    //           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+    //         />
+    //       </svg>
+    //     </button>
+    //   </div>
 
-      {/* Profile Card */}
-      <div className="h-full flex items-center justify-center p-4">
-        {currentProfile && (
-          <div
-            ref={cardRef}
-            className={`relative w-full max-w-sm h-[70vh] bg-white rounded-3xl shadow-xl overflow-hidden transition-transform duration-500 ${
-              swipeDirection === "left"
-                ? "-translate-x-full rotate-[-20deg] opacity-0"
-                : swipeDirection === "right"
-                ? "translate-x-full rotate-[20deg] opacity-0"
-                : ""
-            }`}
-            onTouchEnd={handleDragEnd}
-          >
-            <img
-              src={currentProfile.image}
-              alt={currentProfile.name}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
-              <div className="flex items-end">
-                <h2 className="text-2xl font-bold">
-                  {currentProfile.name}, {currentProfile.age}
-                </h2>
-              </div>
-              <p className="text-sm opacity-80">{currentProfile.distance}</p>
-              <p className="mt-2">{currentProfile.bio}</p>
-            </div>
-          </div>
-        )}
-      </div>
+    //   {/* Profile Card */}
+    //   <div className="h-full flex items-center justify-center p-4">
+    //     {currentProfile && (
+    //       <div
+    //         ref={cardRef}
+    //         className={`relative w-full max-w-sm h-[70vh] bg-white rounded-3xl shadow-xl overflow-hidden transition-transform duration-500 ${
+    //           swipeDirection === "left"
+    //             ? "-translate-x-full rotate-[-20deg] opacity-0"
+    //             : swipeDirection === "right"
+    //             ? "translate-x-full rotate-[20deg] opacity-0"
+    //             : ""
+    //         }`}
+    //         onTouchEnd={handleDragEnd}
+    //       >
+    //         <img
+    //           src={currentProfile.image}
+    //           alt={currentProfile.name}
+    //           className="h-full w-full object-cover"
+    //         />
+    //         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
+    //           <div className="flex items-end">
+    //             <h2 className="text-2xl font-bold">
+    //               {currentProfile.name}, {currentProfile.age}
+    //             </h2>
+    //           </div>
+    //           <p className="text-sm opacity-80">{currentProfile.distance}</p>
+    //           <p className="mt-2">{currentProfile.bio}</p>
+    //         </div>
+    //       </div>
+    //     )}
+    //   </div>
 
-      {/* Action Buttons */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-8">
-        <button
-          onClick={() => handleSwipe("left")}
-          className="p-4 bg-white rounded-full shadow-lg text-red-500 hover:bg-red-50 transition"
-        >
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+    //   {/* Action Buttons */}
+    //   <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-8">
+    //     <button
+    //       onClick={() => handleSwipe("left")}
+    //       className="p-4 bg-white rounded-full shadow-lg text-red-500 hover:bg-red-50 transition"
+    //     >
+    //       <svg
+    //         className="w-8 h-8"
+    //         fill="none"
+    //         stroke="currentColor"
+    //         viewBox="0 0 24 24"
+    //       >
+    //         <path
+    //           strokeLinecap="round"
+    //           strokeLinejoin="round"
+    //           strokeWidth={2}
+    //           d="M6 18L18 6M6 6l12 12"
+    //         />
+    //       </svg>
+    //     </button>
 
-        <button className="p-4 bg-white rounded-full shadow-lg text-blue-500 hover:bg-blue-50 transition">
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 15l8-8m0 0l-8-8m8 8H4"
-            />
-          </svg>
-        </button>
+    //     <button className="p-4 bg-white rounded-full shadow-lg text-blue-500 hover:bg-blue-50 transition">
+    //       <svg
+    //         className="w-8 h-8"
+    //         fill="none"
+    //         stroke="currentColor"
+    //         viewBox="0 0 24 24"
+    //       >
+    //         <path
+    //           strokeLinecap="round"
+    //           strokeLinejoin="round"
+    //           strokeWidth={2}
+    //           d="M12 15l8-8m0 0l-8-8m8 8H4"
+    //         />
+    //       </svg>
+    //     </button>
 
-        <button
-          onClick={() => handleSwipe("right")}
-          className="p-4 bg-white rounded-full shadow-lg text-green-500 hover:bg-green-50 transition"
-        >
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
-          </svg>
-        </button>
-      </div>
+    //     <button
+    //       onClick={() => handleSwipe("right")}
+    //       className="p-4 bg-white rounded-full shadow-lg text-green-500 hover:bg-green-50 transition"
+    //     >
+    //       <svg
+    //         className="w-8 h-8"
+    //         fill="none"
+    //         stroke="currentColor"
+    //         viewBox="0 0 24 24"
+    //       >
+    //         <path
+    //           strokeLinecap="round"
+    //           strokeLinejoin="round"
+    //           strokeWidth={2}
+    //           d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+    //         />
+    //       </svg>
+    //     </button>
+    //   </div>
 
-      {/* Empty State */}
-      {profiles.length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center p-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-700">
-              No more profiles
-            </h2>
-            <p className="text-gray-500 mt-2">
-              Check back later for new matches
-            </p>
-          </div>
-        </div>
-      )}
-    </div>
+    //   {/* Empty State */}
+    //   {profiles.length === 0 && (
+    //     <div className="absolute inset-0 flex items-center justify-center p-8">
+    //       <div className="text-center">
+    //         <h2 className="text-2xl font-bold text-gray-700">
+    //           No more profiles
+    //         </h2>
+    //         <p className="text-gray-500 mt-2">
+    //           Check back later for new matches
+    //         </p>
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 

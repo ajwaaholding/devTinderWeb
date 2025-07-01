@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loginUser } from "../constants/globalUtils";
-
+import useStore from "../store/usestore";
+import { useNavigate } from "react-router";
+import Spinner from "./Spinner";
 const Login = () => {
+  const { user, addUser } = useStore((state) => state);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -9,6 +13,15 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      return navigate("/feeds", { replace: true });
+    }
+    setLoading(false);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,10 +54,15 @@ const Login = () => {
       setIsLoading(true);
       const { email, password } = formData;
       const res = await loginUser({ email, password });
+      addUser(res.data);
+      setIsLoading(false);
+      if (res.status === 1) {
+        return navigate("/feeds", { replace: true });
+      }
       console.log(res, "res");
     }
   };
-
+  if (loading) return <Spinner />;
   return (
     <div className=" bg-gradient-to-br from-pink-50 to-red-50 flex items-center justify-center p-4">
       <div className="w-full m- max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
